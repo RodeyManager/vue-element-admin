@@ -1,0 +1,436 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  outline: none;
+}
+body {
+  font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.15;
+  color: #333;
+  background-color: #fff;
+}
+*,
+:focus {
+  outline: 0;
+}
+a {
+  color: #337ab7;
+  text-decoration: none;
+  &:focus,
+  &:hover {
+    color: #23527c;
+    text-decoration: underline;
+  }
+}
+img {
+  vertical-align: middle;
+}
+
+/* ----- utils ----- */
+.clearfix:before,
+.clearfix:after {
+  content: " ";
+  display: table;
+}
+.clearfix:after {
+  clear: both;
+}
+
+/* ----- animation ------ */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+
+/* ----- layout ------ */
+.site-wrapper {
+  position: relative;
+  min-width: 1180px;
+  // background: #f0f0f0;
+  background: white;
+}
+
+/* site-sidebar-collapse */
+.site-sidebar--collapse {
+  .site-topbar__header,
+  .site-sidebar,
+  .site-sidebar__inner,
+  .el-menu.site-sidebar__menu {
+    width: 64px;
+  }
+  .site-topbar__body,
+  .site-content__wrapper {
+    margin-left: 64px;
+  }
+  .site-logo {
+    &__lg {
+      // display: none;
+      background: url(../img/cignacmb_logo_r.png) no-repeat center center;
+    }
+    // &__mini {
+      // display: inline-block;
+    // }
+  }
+  .site-sidebar,
+  .site-sidebar__inner {
+    overflow: initial;
+  }
+  i.site-sidebar__menu-icon {
+    margin-right: 0;
+    font-size: 24px;
+  }
+  .site-content--tabs > .el-tabs .el-tabs__header {
+    left: 64px;
+  }
+}
+/* site-sidebar-collapse animation */
+.site-topbar__header,
+.site-topbar__body,
+.site-logo,
+.site-sidebar,
+.site-sidebar__inner,
+.site-sidebar__menu.el-menu,
+i.site-sidebar__menu-icon,
+.site-content__wrapper,
+.site-content--tabs > .el-tabs .el-tabs__header {
+  transition: left .3s, width .3s, margin-left .3s, font-size .3s;
+}
+/* site-topbar */
+.site-topbar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1030;
+  height: 50px;
+  //box-shadow: 0 2px 4px rgba(0, 0, 0, .08);
+  background-color: #2D4152;
+}
+.site-topbar__header {
+  float: left;
+  width: 230px;
+  height: 50px;
+}
+.site-logo {
+  display: table-cell;
+  vertical-align: middle;
+  width: 230px;
+  height: 50px;
+  margin: 0;
+  font-size: 20px;
+  text-align: center;
+  text-transform: uppercase;
+  white-space: nowrap;
+  &__lg, &__mini{
+    display: block;
+    width: 100%;
+    height: 100%;
+    transition: all 0.25s linear;
+  }
+  &__lg {
+    background: url(../img/cignacmb_logo_white.png) no-repeat center center;
+    background-size: 160px;
+  }
+  &__mini {
+    display: none;
+    background: url(../img/cignacmb_logo_r.png) no-repeat center center;
+  }
+}
+.site-topbar__switch {
+  font-size: 18px;
+  border-bottom: none !important;
+}
+.site-topbar__avatar {
+  border-bottom: none !important;
+  .el-dropdown-link {
+    > img {
+      width: 36px;
+      height: auto;
+      margin-right: 5px;
+      border-radius: 100%;
+      margin-top: -6px;
+    }
+    > span{
+      margin-top: -6px;
+      display: inline-block;
+    }
+  }
+}
+.site-topbar__body {
+  position: relative;
+  margin-left: 230px;
+  padding-right: 15px;
+  background-color: #2d4152;
+}
+.site-topbar__menu {
+  float: left;
+  background-color: transparent;
+  border-bottom: 0;
+  &--right {
+    float: right;
+  }
+  .el-menu-item,
+  .el-submenu .el-submenu__title {
+    height: 50px;
+    line-height: 50px;
+    white-space: nowrap;
+    border-bottom: 1px #212c36 solid;
+    box-shadow: inset 0 1px 0 0 rgba(255,255,255,0.08);
+  }
+  .el-submenu > .el-menu {
+    top: 55px;
+  }
+}
+// 头部搜索
+.el-autocomplete.site-topbar__autocomplete{
+  margin-top: 10px;
+  .el-input.el-input--mini{
+    .el-input__inner{
+      background-color: #445768;
+      border: 1px solid #2d4152;
+      transition: all 0.3s linear;
+      color: white;
+      &:hover{
+        width: 240px;
+        border-color: #8cc5ff;
+        background-color: #202e3a;
+      }
+    }
+  }
+}
+.el-autocomplete.site-topbar__autocomplete.search-flex{
+  .el-input.el-input--mini{
+    .el-input__inner{
+      width: 240px;
+      border-color: #8cc5ff;
+      background-color: #202e3a;
+    }
+  }
+}
+span.search-item{
+  i{
+    margin-right: 10px;
+  }
+  &:hover{
+    color: #409EFF;
+  }
+}
+
+// 头部用户头像
+.site-topbar__avatar{
+  .el-dropdown{
+    color: white;
+  }
+}
+
+
+/* site-sidebar */
+.site-sidebar {
+  position: fixed;
+  top: 50px;
+  left: 0;
+  bottom: 0;
+  z-index: 1020;
+  width: 230px;
+  background-color: #2D4152;
+  overflow: hidden;
+}
+.site-sidebar__inner {
+  position: relative;
+  z-index: 1;
+  width: 250px;
+  height: 100%;
+  padding-bottom: 15px;
+  overflow-y: scroll;
+}
+.site-sidebar__menu.el-menu {
+  width: 230px;
+  border-right: 0;
+  .el-menu-item,
+  .el-submenu .el-submenu__title {
+    height: 42px;
+    line-height: 42px;
+    white-space: nowrap;
+    // border-bottom: 1px #242c34 solid;
+    // box-shadow: inset 0 1px 0 0 rgba(255,255,255,0.08);
+    background-color: #2D4152;
+    &:hover{
+      background-color: #23323e;
+    }
+    i {
+      color: #c8cdd6;
+    }
+  }
+  .el-menu-item.is-active{
+    background-color: #23323e;
+  }
+  .el-submenu:last-child,
+  .el-menu-item:last-child{
+    border-bottom: none;
+    .el-submenu__title{
+      border-bottom: none;
+    }
+  }
+  .has-submenu.el-submenu{
+    .el-menu.el-menu--inline{
+      .el-menu-item{
+        background-color: #364b5d;
+        &:hover{
+          background-color: #23323e;
+        }
+      }
+      .el-menu-item.is-active{
+        background-color: #23323e;
+      }
+    }
+
+  }
+}
+.has-submenu.el-submenu.is-opened{
+  i.el-submenu__icon-arrow{
+    color: #8cc5ff;
+  }
+}
+
+
+
+.el-menu--vertical{
+  .el-menu--popup{
+    padding: 0;
+    overflow: hidden;
+  }
+  .el-menu-item,
+  .el-submenu .el-submenu__title {
+    height: 42px;
+    line-height: 42px;
+    white-space: nowrap;
+    // border-bottom: 1px #242c34 solid;
+    // box-shadow: inset 0 1px 0 0 rgba(255,255,255,0.08);
+    background-color:#2D4152;
+    &:hover{
+      background-color: #23323e;
+    }
+    &.is-active{
+      color: rgb(140, 197, 255);
+      background-color: #23323e;
+    }
+  }
+}
+i.site-sidebar__menu-icon {
+  width: 24px;
+  margin-right: 5px;
+  text-align: center;
+  font-size: 16px;
+  color: inherit;
+}
+/* site-content */
+.site-content__wrapper {
+  position: relative;
+  padding-top: 50px;
+  margin-left: 230px;
+  min-height: 100%;
+}
+.site-content {
+  position: relative;
+  padding: 15px;
+}
+.site-content--tabs {
+  padding: 45px 0 0;
+  > .el-tabs {
+    .el-tabs__header {
+      position: fixed;
+      top: 50px;
+      left: 230px;
+      right: 0;
+      z-index: 930;
+      padding: 0 15px;
+      //box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .12), 0 0 6px 0 rgba(0, 0, 0, .04);
+      background-color: #fff;
+    }
+    .el-tabs__nav-wrap {
+      margin-bottom: 0;
+      &:after {
+        display: none;
+      }
+      .el-tabs__item{
+        padding: 0 10px;
+        i {
+          margin-right: 5px;
+        }
+      }
+    }
+    .el-tabs__content {
+      padding: 0;
+      .el-card{
+          border: none;
+          .list-page{
+            .el-form.filter-form{
+              margin-bottom: 8px;
+            }
+          }
+      }
+    }
+    // .el-pagination {
+    //   margin-top: 15px;
+    //   text-align: right;
+    // }
+    .el-breadcrumb {
+      padding: 0 0 15px;
+      margin-bottom: 22px;
+      border-bottom: 1px solid #ebeef5;
+    }
+  }
+}
+
+// 列表下方
+.table-bottom-wrapper{
+    margin: 10px auto;
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+    .el-form-item.el-form-item--small{
+      .el-button+.el-button{
+        margin-left: 5px;
+      }
+    }
+    .el-pagination{
+      margin-top: 0;
+      text-align: right;
+      vertical-align: middle;
+      .pagiantion-slot{
+        color: #606266;
+        font-weight: normal;
+      }
+    }
+}
+
+// 列表展开样式
+.table-expand{
+  .el-form-item--mini.el-form-item, .el-form-item--small.el-form-item{
+    margin-bottom: 5px;
+  }
+  .el-form-item{
+    .el-form-item__label{
+      width: 90px;
+      color: #99a9bf;
+    }
+  }
+}
+
+.el-button.is-circle.role-loading-btn{
+  position: absolute;
+  right: 3px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+
+
+
+
